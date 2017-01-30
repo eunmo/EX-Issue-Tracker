@@ -1,0 +1,38 @@
+<table class="table table-bordered">
+	<tr>
+		<th class="text-right">
+			Name
+		</th>
+		<th class="text-center">
+			Total
+		</th>
+		<th class="text-center">
+			Active
+		</th>
+		<th class="text-center">
+			Postponed
+		</th>
+		<th>
+			Current Issues
+		</th>
+	</tr>
+	<tr ng-repeat="handler in module.meta">
+		<td class="text-right">
+			<a href="#/handler/{{handler.name}}">{{handler.name}}</a>
+		</td>
+		<td class="text-center">
+			<b>{{handler.Active + handler.Postponed + handler.Done + handler.offset}}</b>
+		</td>
+		<td class="text-center">
+			{{handler.Active}}
+		</td>
+		<td class="text-center">
+			{{handler.Postponed}}
+		</td>
+		<td>
+			<span ng-repeat="issue in handler.current | orderBy: '-'">
+				<a href="http://ims.tmaxsoft.com/tody/ims/issue/issueView.do?issueId={{issue}}">{{issue}}</a><span ng-show="!$last">,</span>
+			</span>
+		</td>
+	</tr>
+</table>
